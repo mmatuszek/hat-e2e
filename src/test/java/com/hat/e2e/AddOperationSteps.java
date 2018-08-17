@@ -1,7 +1,6 @@
 package com.hat.e2e;
 
 import com.hat.e2e.configuration.Properties;
-import com.hat.e2e.configuration.SpringConfig;
 import com.hat.e2e.pageobjects.LoginPage;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -14,13 +13,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
 
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class AddOperationSteps extends SpringConfig {
+public class AddOperationSteps extends BaseSteps {
 
     private static final Logger log = Logger.getLogger(AddOperationSteps.class);
 
