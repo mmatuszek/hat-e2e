@@ -2,20 +2,24 @@ Feature: Add operation
    In order to gather information about my cash inputs
    I need to be able to store income operation
 
-   Scenario Outline: Add operation
+   Scenario Outline: Add income operation
       Given test environment is running
-#      And income type <type> is configured
-#      And category <category> is configured
-#      And account <target_account> is configured
-#      And planned operation <planned_operation> is entered with amount of <planned_amount>
-      When user logs in to application
-      And user opens a page to create operation
-#      And user fills in <date>, <type>, <category>, <target_account>, <description>, <amount>, <planned_operation>
-      Then save confirmation is displayed
-      When user clicks search button
-      Then <date>, <type>, <description>, <amount> is visible in search
+      And user <username> with <password> exists
+      And income categories <categories> exist
+      And accounts <accounts> exist
+      And planned operation with <planned_description> and <planned_amount> for <month> and <category> exist
+      When user logs in to application with <username> and <password>
+      And user opens add income operation page
+      And enters date <date>
+      And selects category <category>
+      And selects account <account>
+      And enters description <description>
+      And enters amount <amount>
+      And selects planned operation <planned_description>
+      Then user can see that amount left is <planned_amount>
+      When user saves operation
+      Then operation is saved
 
       Examples:
-         | date       | type    | category | target_account | description              | amount | planned_operation  | planned_amount |
-         | 2016-01-01 | Income  | Salary   | myAccount      | Salary for December 2015 | 1000   | Salary             | 2000           |
-         | 2016-03-31 | Income  | Other    | myOtherAccount | Gift from parents        | 500    | Gifts              | 600            |
+         | username   | password    | month  | date       | category | account        | description              | amount | planned_description  | planned_amount |
+         | test       | TestPass@1  | March  | 2018-03-21 | Salary   | myAccount      | Salary for December 2015 | 1000   | Salary               | 2000           |
